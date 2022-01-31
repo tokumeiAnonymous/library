@@ -1,28 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title> Gooddeeds </title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
+
 <body>
-    <div class="header"> 
+    <div class="header">
         <div>good<strong>deeds </strong></div>
     </div>
     <div class="content">
-        <table>
-            <tr>
-                <th class="title">Title</th>
-                <th class="author">Author</th>
-                <th class="pages"># of Pages</th>
-                <th class="status">Status</th>
-                <th class="remove">Remove</th>
-            </tr>
+        <table class="data">
+            <thead>
+                <tr>
+                    <th class="title">Title</th>
+                    <th class="author">Author</th>
+                    <th class="pages"># of Pages</th>
+                    <th class="status">Status</th>
+                    <th class="remove">Remove</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+
+            </tbody>
         </table>
     </div>
     <div class="add">
-        <img src="plus-box.svg" alt="add icon">
+        <img class="add-book" src="plus-box.svg" alt="add book">
+    </div>
+
+
+    <div class="loginPopup">
+        <div class="formPopup" id="popupForm">
+            <form action="/" class="formContainer">
+                <h2>Add new book</h2>
+                <label for="title">
+                    <strong>Title</strong>
+                </label>
+                <input type="text" id="title" placeholder="The Lord of the Rings" name="title" required>
+
+                <label for="author">
+                    <strong>Author</strong>
+                </label>
+                <input type="text" id="author" placeholder="JRR Tolkien" name="author" required>
+
+                <label for="pages">
+                    <strong># of Pages </strong>
+                </label>
+                <input type="text" id="pages" name="pages" required>
+
+                <label for="status">
+                    <strong>Status</strong>
+                </label>
+                <input type="text" id="status" placeholder="Not Read" name="status" required>
+
+                <button type="submit" class="btn">Add Book</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+        </div>
     </div>
 </body>
+
 </html>
