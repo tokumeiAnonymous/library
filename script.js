@@ -8,11 +8,11 @@ function Book(title, author, pages, read) {
     
 }
 
-function generateTable(body, data){
-    for (let element of data){
+function generateTable(body, data) {
+    for (let element of data) {
         let row = body.insertRow();
 
-        for(key in element){
+        for(key in element) {
             let cell = row.insertCell();
             let text = document.createTextNode(element[key]);
             cell.appendChild(text);
@@ -21,6 +21,10 @@ function generateTable(body, data){
         addButton(row);
 
     }
+}
+
+function updateTable(body, data) {
+
 }
 
 function addButton(row) {
