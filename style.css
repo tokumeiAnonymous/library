@@ -41,6 +41,15 @@ th {
     margin-right: 10%;
 }
 
+button {
+  background-color: #F8C15D;
+  border-radius: 0.2rem;
+  opacity: 0.7;
+}
+
+button:hover {
+  opacity: 1;
+}
 
 
 .add-book {

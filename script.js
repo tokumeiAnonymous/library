@@ -13,50 +13,51 @@ const cancel = form.querySelector('#cancel');
 addBook.addEventListener('click', () => {
     document.getElementById("popupForm").style.display = "block";
 });
-cancel.addEventListener('click', () => {
+
+const closeForm = () => {
     document.getElementById("popupForm").style.display = "none";
     clearForm();
-});
+}
+
+cancel.addEventListener('click', closeForm);
 
 submit.addEventListener('click', () => {
 
-    let title = titleInput.value;
-    let author = authorInput.value;
-    let page = pageInput.value;
-    let readStatus = read.value;
-    let newBook = book(title, author, page, read);
-    myLib.push(newBook);
+    if (validateBook()) {
+        let title = titleInput.value;
+        let author = authorInput.value;
+        let page = pageInput.value;
+        let readStatus = read.value;
+        let newBook = book(title, author, page, read);
+        myLib.push(newBook);
+        updateTable();
+        closeForm();
+    }
 });
 
 
 const book = (title, author, pages, read) => {
-    
-    const changeRead = (read) => {
-        if (read == "Read") this.read = "Not Read";
-        else this.read = "Read";
-    }
 
-    return {title, author, pages, read, changeRead}
-}
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
 
-const clearForm = () => {
-
-    titleInput.value = "";
-    authorInput.value = "";
-    pageInput.value = "";
+    return { title, author, pages, read }
 }
 
 const createReadTd = (book) => {
 
-    let readStatusTd = document.createElement('td');
     let readStatusBtn = document.createElement('button');
-    readStatusBtn.textContent = book.read.value;
+    readStatusBtn.textContent = "Change Status";
     readStatusBtn.addEventListener('click', () => {
-        book.changeRead(book.read)
-    });
-    readStatusTd.appendChild(readStatusTd);
+        if (book.read == "Read") book.read = "Not Read";
+        else book.read = "Read";
 
-    return readStatusTd;
+        updateTable();
+    });
+
+    return readStatusBtn;
 }
 
 const createDeleteTd = (book) => {
@@ -66,13 +67,21 @@ const createDeleteTd = (book) => {
     deleteBtn.textContent = "Delete";
     deleteBtn.addEventListener('click', () => {
         myLib.splice(myLib.indexOf(book), 1)
+        updateTable();
     });
     deleteTd.appendChild(deleteBtn);
 
     return deleteTd;
 }
 
-const updateTable = () => {
+function clearForm() {
+
+    titleInput.value = "";
+    authorInput.value = "";
+    pageInput.value = "";
+}
+
+function updateTable() {
 
     body.textContent = '';
 
@@ -81,31 +90,40 @@ const updateTable = () => {
         Object.keys(book).forEach(prop => {
             let newTd = document.createElement('td');
             newTd.textContent = book[prop];
+            if (prop == "read") {
+                if(book[prop] != "Read" && book[prop] != "Not Read") {
+                    book[prop] = "Read";
+                    newTd.textContent = book[prop];
+                }
+                newTd.appendChild(createReadTd(book));
+            }
             row.appendChild(newTd);
         });
-    
-        row.appendChild(createReadTd(book));
+
+        // row.appendChild(createReadTd(book));
         row.appendChild(createDeleteTd(book));
+        body.appendChild(row);
     });
-    body.appendChild(row);
+
 }
 
-const submitData = () => {
-    addBookTolib();
-    updateTable();
-    closeForm();
+function validateBook() {
+
+    if (titleInput.value == "" || authorInput.value == "" || pageInput.value == "") return false;
+    return true;
+
 }
 
 let myLib = [];
 
 let book1 = book("The Book Thief",
-            "Markus Zusak", 400, "Read");
+    "Markus Zusak", 400, "Read");
 
-let book2 = book("The Idiot", 
-            "Fyodor Doestoyevsky", 655, "Read");
+let book2 = book("The Idiot",
+    "Fyodor Doestoyevsky", 655, "Read");
 
-let book3 = book("The Name of The Wind", 
-            "Patrick Rothfuss", 719, "Not Read");
+let book3 = book("The Name of The Wind",
+    "Patrick Rothfuss", 719, "Not Read");
 
 myLib.push(book1);
 myLib.push(book2);
