@@ -6,7 +6,8 @@ const form = document.querySelector('.formPopup');
 const titleInput = form.querySelector('#title');
 const authorInput = form.querySelector('#author');
 const pageInput = form.querySelector('#pages');
-const read = form.querySelector('#read');
+const readStatus = form.querySelector('#read');
+const ratingInput = form.querySelector('#rating');
 const submit = form.querySelector('#submit');
 const cancel = form.querySelector('#cancel');
 
@@ -27,8 +28,9 @@ submit.addEventListener('click', () => {
         let title = titleInput.value;
         let author = authorInput.value;
         let page = pageInput.value;
-        let readStatus = read.value;
-        let newBook = book(title, author, page, read);
+        let read = readStatus.value;
+        let rating = ratingInput.value;
+        let newBook = book(title, author, page, read, rating);
         myLib.push(newBook);
         updateTable();
         closeForm();
@@ -36,14 +38,15 @@ submit.addEventListener('click', () => {
 });
 
 
-const book = (title, author, pages, read) => {
+const book = (title, author, pages, read, rating) => {
 
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.rating = rating;
 
-    return { title, author, pages, read }
+    return { title, author, pages, read, rating }
 }
 
 const createReadTd = (book) => {
@@ -79,6 +82,7 @@ function clearForm() {
     titleInput.value = "";
     authorInput.value = "";
     pageInput.value = "";
+    ratingInput.value = "";
 }
 
 function updateTable() {
@@ -97,6 +101,13 @@ function updateTable() {
                 }
                 newTd.appendChild(createReadTd(book));
             }
+            if (prop == "rating") {
+                if (book[prop] == "") {
+                    book[prop] = "No comment";
+                    newTd.textContent = book[prop];
+                }
+            }
+            
             row.appendChild(newTd);
         });
 
@@ -117,13 +128,13 @@ function validateBook() {
 let myLib = [];
 
 let book1 = book("The Book Thief",
-    "Markus Zusak", 400, "Read");
+    "Markus Zusak", 400, "Read", 4.7);
 
 let book2 = book("The Idiot",
-    "Fyodor Doestoyevsky", 655, "Read");
+    "Fyodor Doestoyevsky", 655, "Read", 4);
 
 let book3 = book("The Name of The Wind",
-    "Patrick Rothfuss", 719, "Not Read");
+    "Patrick Rothfuss", 719, "Not Read", 4);
 
 myLib.push(book1);
 myLib.push(book2);
