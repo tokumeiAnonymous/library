@@ -121,6 +121,7 @@ function updateTable() {
 function validateBook() {
 
     if (titleInput.value == "" || authorInput.value == "" || pageInput.value == "") return false;
+    if (ratingInput.value < 0 || ratingInput.value > 5) return false;
     return true;
 
 }

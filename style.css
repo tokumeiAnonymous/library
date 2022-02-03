@@ -70,7 +70,7 @@ button:hover {
     display: none;
     position: fixed;
     left: 50%;
-    top: 5%;
+    bottom: 1%;
     transform: translate(-50%, 5%);
     border: 3px solid #999999;
     z-index: 9;
