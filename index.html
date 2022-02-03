@@ -20,7 +20,6 @@
                     <th class="author">Author</th>
                     <th class="pages"># of Pages</th>
                     <th class="status">Status</th>
-                    <th class="remove">Remove</th>
                 </tr>
             </thead>
             <tbody class="table-body">
@@ -33,9 +32,8 @@
     </div>
 
 
-    <div class="loginPopup">
         <div class="formPopup" id="popupForm">
-            <form action="/" class="formContainer">
+            <form class="formContainer">
                 <h2>Add new book</h2>
                 <label for="title">
                     <strong>Title</strong>
@@ -50,18 +48,20 @@
                 <label for="pages">
                     <strong># of Pages </strong>
                 </label>
-                <input type="text" id="pages" name="pages" required>
+                <input type="number" id="pages" name="pages" required>
 
                 <label for="status">
                     <strong>Status</strong>
                 </label>
-                <input type="text" id="status" placeholder="Not Read" name="status" required>
+                <select name="status" id="read">
+                    <option value="Read">Read</option>
+                    <option value="Not Read">Not Read</option>
+                </select>
 
-                <button type="submit" class="btn">Add Book</button>
-                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                <button type="submit" class="btn" id="submit">Add Book</button>
+                <button type="button" class="btn cancel" id="cancel">Close</button>
             </form>
         </div>
-    </div>
 </body>
 
 </html>
