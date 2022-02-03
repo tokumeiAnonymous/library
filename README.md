@@ -1,7 +1,6 @@
 ## Library
 
-## To update: 
+## Future Implementation
 
-- Delete button always delete the lastelement
-- Adds the user input to the table
-- Clean code
+- Add edit rating function
+- Limit window resize height
