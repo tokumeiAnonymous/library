@@ -7,3 +7,4 @@ This was made as an introduction to factory functions in javascript and organizi
 
 - Add edit rating function
 - Limit window resize height
+- Add local storage
